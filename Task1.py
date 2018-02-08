@@ -21,6 +21,7 @@ if __name__ == '__main__':
     '''
         Run Part
     '''
+
     ltexts = len(texts)
     lcalls = len(calls)
     result = set()

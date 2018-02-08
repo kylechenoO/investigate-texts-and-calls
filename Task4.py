@@ -28,6 +28,10 @@ with open('calls.csv', 'r') as f:
 """
 
 def getSalesPhone(listName):
+    '''
+        Get 140 header call out phone number list
+    '''
+
     mlist = []
     for line in listName:
         if re.match('^140\d+$', line[0]):
