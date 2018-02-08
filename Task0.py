@@ -27,5 +27,7 @@ if __name__ == '__main__':
     latest = len(calls) - 1
 
     # Output
-    print('First record of texts, %s texts %s at time %s' % (texts[0][0], texts[0][1], texts[0][2]))
-    print('Last record of calls, %s calls %s at time %s, lasting %s seconds' % (calls[latest][0], calls[latest][1], calls[latest][2], calls[latest][3]))
+    print('First record of texts, %s texts %s at time %s' % \
+            (texts[0][0], texts[0][1], texts[0][2]))
+    print('Last record of calls, %s calls %s at time %s, lasting %s seconds' % \
+            (calls[latest][0], calls[latest][1], calls[latest][2], calls[latest][3]))
