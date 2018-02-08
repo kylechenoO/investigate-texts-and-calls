@@ -23,3 +23,35 @@ September 2016.".
 如果键不存在于字典内，将此键加入字典，并将它的值设为给定值。
 """
 
+if __name__ == '__main__':
+    '''
+        Run Part
+    '''
+
+    result_dict = {}
+    for line in calls:
+        key = line[0]
+        val = int(line[3])
+        if result_dict.get(key) == None:
+            result_dict[key] = val
+
+        else:
+            result_dict[key] += val
+
+        key = line[1]
+        val = int(line[3])
+        if result_dict.get(key) == None:
+            result_dict[key] = val
+
+        else:
+            result_dict[key] += val
+
+    maxkey = ''
+    maxval = 0
+    for key in result_dict:
+        if maxval < result_dict[key]:
+            maxkey = key
+            maxval = result_dict[key]
+
+    # Output
+    print('%s spent the longest time, %d seconds, on the phone during September 2016.' % ( maxkey, maxval ))

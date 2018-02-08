@@ -3,6 +3,7 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
+import re
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -26,3 +27,21 @@ with open('calls.csv', 'r') as f:
 电话号码不能重复，每行打印一条，按字典顺序排序后输出。
 """
 
+def getSalesPhone(listName):
+    mlist = []
+    for line in listName:
+        if re.match('^140\d+$', line[0]):
+            mlist.append(line[0])
+
+    return mlist
+
+if __name__ == '__main__':
+    '''
+        Run Part
+    '''
+
+    result_list = list(set(getSalesPhone(calls)))
+    result_list.sort()
+    print('These numbers could be telemarketers:')
+    for result in result_list:
+        print(result)

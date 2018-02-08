@@ -3,6 +3,7 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
+import re
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -30,6 +31,7 @@ with open('calls.csv', 'r') as f:
  <list of codes>
 代号不能重复，每行打印一条，按字典顺序排序后输出。
 
+
 第二部分: 由班加罗尔固话打往班加罗尔的电话所占比例是多少？
 换句话说，所有由（080）开头的号码拨出的通话中，
 打往由（080）开头的号码所占的比例是多少？
@@ -39,3 +41,51 @@ with open('calls.csv', 'r') as f:
 to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
+
+def getHeader(phone):
+    '''
+       A function to get phone header
+    '''
+
+    prefix = ''
+    if re.match('^\(0\d+\)', phone):
+        prefix = re.sub(r'^\(', '', phone)
+        prefix = re.sub(r'\).*$', '', prefix)
+
+    elif re.match('^\d+ \d+$', phone):
+        prefix = phone[:4]
+
+    elif re.match('^140\d+$', phone):
+        prefix = '140'
+
+    return prefix
+
+if __name__ == '__main__':
+    '''
+        Run Part
+    '''
+
+    # Part I
+    lcalls = len(calls)
+    prefix_list = []
+    result_list = []
+    for line in calls:
+        if re.match('^\(080\)', line[0]):
+            prefix_list.append(getHeader(line[1]))
+
+    result_list = list(set(prefix_list))
+    result_list.sort()
+
+    # Output
+    print('The numbers called by people in Bangalore have codes:')
+    for result in result_list:
+        print(result)
+
+    # Part II
+    count = 0
+    for prefix in prefix_list:
+        if prefix == '080':
+            count += 1
+
+    # Output
+    print('%f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' % ( count / len(prefix_list)))
