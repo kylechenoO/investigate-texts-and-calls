@@ -34,6 +34,7 @@ def getSalesPhone(calllist, textlist):
 
     call_out_list = []
     except_list = []
+    result_list = []
     for callline in calllist:
         call_out_list.append(callline[0])
         except_list.append(callline[1])
@@ -43,10 +44,10 @@ def getSalesPhone(calllist, textlist):
         except_list.append(textline[1])
 
     for call_num in call_out_list:
-        if call_num in except_list:
-            call_out_list.remove(call_num)
+        if call_num not in except_list:
+            result_list.append(call_num)
 
-    return call_out_list
+    return result_list
 
 if __name__ == '__main__':
     '''
