@@ -88,4 +88,5 @@ if __name__ == '__main__':
             count += 1
 
     # Output
-    print('2%f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' % ( count / len(prefix_list)))
+    print('{:.2%} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.'.format( \
+            count / len(prefix_list)))
