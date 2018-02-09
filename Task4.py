@@ -27,24 +27,33 @@ with open('calls.csv', 'r') as f:
 电话号码不能重复，每行打印一条，按字典顺序排序后输出。
 """
 
-def getSalesPhone(listName):
+def getSalesPhone(calllist, textlist):
     '''
-        Get 140 header call out phone number list
+        Get all sales number
     '''
 
-    mlist = []
-    for line in listName:
-        if re.match('^140\d+$', line[0]):
-            mlist.append(line[0])
+    call_out_list = []
+    except_list = []
+    for callline in calllist:
+        call_out_list.append(callline[0])
+        except_list.append(callline[1])
 
-    return mlist
+    for textline in textlist:
+        except_list.append(textline[0])
+        except_list.append(textline[1])
+
+    for call_num in call_out_list:
+        if call_num in except_list:
+            call_out_list.remove(call_num)
+
+    return call_out_list
 
 if __name__ == '__main__':
     '''
         Run Part
     '''
 
-    result_list = list(set(getSalesPhone(calls)))
+    result_list = list(set(getSalesPhone(calls, texts)))
     result_list.sort()
     print('These numbers could be telemarketers:')
     for result in result_list:
